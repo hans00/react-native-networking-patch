@@ -29,7 +29,7 @@ if (!packageJSON) {
   process.exit(1);
 }
 
-const patchDir = packageJSON.version;
+const patchDir = packageJSON.version.replace(/-\d+$/, '');
 const isPatchExists = patchDir !== '' && fs.existsSync(`${rootPath}/patches/${patchDir}`);
 if (!isPatchExists) {
   const supportVersions = fs.readdirSync(`${rootPath}/patches`).filter(dir => dir.match(/^\d/)).join(', ');
